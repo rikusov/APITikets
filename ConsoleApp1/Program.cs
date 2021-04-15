@@ -12,7 +12,7 @@ namespace TiketsMoney
         {
             var a = new APITikets.APITiketsMoney();
 
-            decimal b = a.GetTikets("MOW",new DateTime(2021, 4, 15), new DateTime(2021, 4, 21));
+            decimal b = a.GetTikets("KUF",new DateTime(2021, 4, 5), new DateTime(2021, 4, 16));
 
             Console.WriteLine(b + "");
             Console.Read();

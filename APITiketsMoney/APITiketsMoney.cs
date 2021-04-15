@@ -54,7 +54,12 @@ namespace APITikets{
                 catch { return -1.0m; }
             }
 
-            if (ListTikets.Count != 0) return ListTikets.Where(x => x.DateDepart == DateRaice).Select(p => p.ValuePrice).Min(); 
+            if (ListTikets.Count != 0) {
+                IEnumerable<decimal> return_tikets = ListTikets.Where(x => x.DateDepart == DateRaice).Select(p => p.ValuePrice);
+
+                if (return_tikets.Count() == 0) return 0.0m;
+                else return return_tikets.Min();
+            }
 
             return 0.0m;
         }
@@ -79,14 +84,16 @@ namespace APITikets{
             decimal a = GetPriceTo(DateDeparture, "LED", KodCityDistant);
 
             if (Decimal.Compare(a, -1.0m) == 0) return -4.0m;
-            else if (Decimal.Compare(a, 0.0m) == 0) output += -1.0m;
+            else if (Decimal.Compare(a, 0.0m) == 0) output = -1.0m;
             else output += a;
 
             decimal b = GetPriceTo(DateArrival, KodCityDistant, "LED");
 
             if (Decimal.Compare(b, -1.0m) == 0) return -4.0m;
-            else if (Decimal.Compare(b, 0.0m) == 0) output += -1.0m;
-            else output += b;
+            else if (Decimal.Compare(b, 0.0m) == 0)
+                    if (Decimal.Compare(output, -1.0m) == 0) output += -2.0m;
+                    else output = -2.0m;
+            else if (Decimal.Compare(output, -1.0m) != 0) output += b;
 
             return output;
         }
