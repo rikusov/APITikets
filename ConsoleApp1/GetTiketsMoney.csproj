@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\APITiketsMoney\APITikets.csproj">
+      <Project>{ae227980-789e-4659-b188-b7d6c4d65d8a}</Project>
+      <Name>APITikets</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
